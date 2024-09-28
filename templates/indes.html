@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        form {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #4CAF50;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #plot {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>House Price Prediction</h1>
+    <form id="predict-form" action="#" method="post">
+        <label for="area">Area:</label>
+        <input type="text" id="area" name="area" required><br>
+
+        <label for="frontage">Frontage:</label>
+        <input type="text" id="frontage" name="frontage" required><br>
+
+        <label for="access_road">Access Road:</label>
+        <input type="text" id="accessroad" name="accessroad" required><br>
+
+        <label for="floors">Floors:</label>
+        <input type="text" id="floors" name="floors" required><br>
+
+        <label for="bedrooms">Bedrooms:</label>
+        <input type="text" id="bedrooms" name="bedrooms" required><br>
+
+        <label for="bathrooms">Bathrooms:</label>
+        <input type="text" id="bathrooms" name="bathrooms" required><br>
+    
+        <div class="form-group" >
+            <label for="model">Model:</label>
+            <select id="model" name="model_type">
+                <option value="linear">Linear Regression</option>
+                <option value="lassor">Lassor Regression</option>
+                <option value="neural">Neural Network</option>
+            </select>
+        </div>
+
+        <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div>
+        <h4>Kết quả dự đoán: {{ gia_du_doan }}</h4>
+        <h4>MSE (Mean Squared Error): {{ mse }}</h4>
+        <h4>MAE (Mean Absolute Error): {{ mae }}</h4>
+        <h4>R² (R-squared):{{ r2 }}</h4>
+    </div>
+    
+</body>
+</html>
