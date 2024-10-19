@@ -39,7 +39,7 @@ X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_filtered, test_s
 
 # 9. Khởi tạo và huấn luyện mô hình MLP (Neural Network)
 # Ẩn 100 nơ-ron trong mỗi lớp ẩn, tối đa 2000 lần lặp, alpha là hệ số regularization
-mlp_model = MLPRegressor(hidden_layer_sizes=(100, 100),activation='tanh', max_iter=500, alpha=0.1, random_state=42) 
+mlp_model = MLPRegressor(hidden_layer_sizes=(100, 100),activation='tanh', max_iter=500, alpha=0.9, random_state=42) 
 #‘tanh’, the hyperbolic tan function, returns f(x) = tanh(x).
 mlp_model.fit(X_train, y_train)
 
