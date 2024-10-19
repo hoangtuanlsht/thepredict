@@ -56,7 +56,7 @@ mae = mean_absolute_error(y_test, y_pred)
 
 
 def train_and_predict_neural(X_train, y_train, X_test):
-    mlp_model = MLPRegressor(hidden_layer_sizes=(100, 100),activation='tanh', max_iter=500, alpha=0.1, random_state=42) 
+    mlp_model = MLPRegressor(hidden_layer_sizes=(100, 100),activation='tanh', max_iter=500, alpha=0.9, random_state=42) 
     mlp_model.fit(X_train, y_train)
     y_pred = mlp_model.predict(X_test)
     return mlp_model, y_pred
