@@ -11,6 +11,7 @@ from neural import train_and_predict_neural, evaluate_model as eval_neural
 from lassor import train_and_predict_lassor, evaluate_model as eval_lassor
 
 app = Flask(__name__)
+application=app
 
 # Đọc và chuẩn bị dữ liệu
 df = pd.read_csv("vietnam_housing_dataset_filtered_hanoi.csv")
