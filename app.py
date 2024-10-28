@@ -11,8 +11,6 @@ from neural import train_and_predict_neural, evaluate_model as eval_neural
 from lassor import train_and_predict_lassor, evaluate_model as eval_lassor
 
 app = Flask(__name__)
-
-# Đọc và chuẩn bị dữ liệu
 df = pd.read_csv("vietnam_housing_dataset_filtered_hanoi.csv")
 dc = df[df["Address"].str.contains("Đống Đa", na=False)]
 dc = dc.drop(columns=['Address', 'House direction', 'Balcony direction', 'Legal status', 'Furniture state'])
@@ -20,8 +18,8 @@ numeric_cols = dc.select_dtypes(include=[np.number]).columns
 dc[numeric_cols] = dc[numeric_cols].fillna(dc[numeric_cols].mean())
 
 # Biến độc lập và biến phụ thuộc
-X = dc[['Area', 'Frontage', 'Access Road', 'Floors', 'Bedrooms', 'Bathrooms']]
-y = dc['Price']
+X = dc[['Area', 'Frontage', 'Access Road', 'Floors', 'Bedrooms', 'Bathrooms']].values.astype(np.float32)
+y = dc['Price'].values.astype(np.float32)
 
 # Tính Z-score và loại bỏ các outliers
 z_scores = np.abs(stats.zscore(X))
@@ -87,16 +85,11 @@ def index():
             model, y_pred = train_and_predict_neural(X_train, y_train, X_test_scaled)
             gia_du_doan = y_pred[0]
             mse, r2, mae = eval_neural(y_test, model.predict(X_test_scaled))
-
         elif selected_model == "lassor":
             model, y_pred = train_and_predict_lassor(X_train, y_train, X_test_scaled)
             gia_du_doan = y_pred[0]
             mse, r2, mae = eval_lassor(y_test, model.predict(X_test_scaled))
-        return render_template("indes.html", gia_du_doan=gia_du_doan, mse=mse, r2=r2, mae=mae)
-
-    return render_template("indes.html", gia_du_doan=gia_du_doan, mse=mse, r2=r2, mae=mae)
-
+    return render_template("index.html", gia_du_doan=gia_du_doan, mse=mse, r2=r2, mae=mae)
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # Render sẽ cung cấp PORT qua biến môi trường
-    app.run(host='0.0.0.0', port=port)
-
+    port = int(os.environ.get("PORT", 10000))  # Thử thay đổi cổng thành 10000
+    app.run(host="0.0.0.0", port=port)
