@@ -11,11 +11,6 @@ from neural import train_and_predict_neural, evaluate_model as eval_neural
 from lassor import train_and_predict_lassor, evaluate_model as eval_lassor
 
 app = Flask(__name__)
-<<<<<<< HEAD
-application = app
-=======
-application=app
->>>>>>> df6fc758a1e902160ebfffacec87276b40f0a2da
 
 # Đọc và chuẩn bị dữ liệu
 df = pd.read_csv("vietnam_housing_dataset_filtered_hanoi.csv")
@@ -102,5 +97,4 @@ def index():
     return render_template("indes.html", gia_du_doan=gia_du_doan, mse=mse, r2=r2, mae=mae)
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
+    app.run()
