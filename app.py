@@ -9,6 +9,7 @@ import os
 from linear import train_and_predict_linear, evaluate_model as eval_linear
 from neural import train_and_predict_neural, evaluate_model as eval_neural
 from lassor import train_and_predict_lassor, evaluate_model as eval_lassor
+export PORT=10000
 
 app = Flask(__name__)
 
