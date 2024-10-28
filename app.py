@@ -97,5 +97,6 @@ def index():
     return render_template("indes.html", gia_du_doan=gia_du_doan, mse=mse, r2=r2, mae=mae)
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 10000))  # Render sẽ cung cấp PORT qua biến môi trường
+    app.run(host='0.0.0.0', port=port)
 
