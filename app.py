@@ -9,7 +9,6 @@ import os
 from linear import train_and_predict_linear, evaluate_model as eval_linear
 from neural import train_and_predict_neural, evaluate_model as eval_neural
 from lassor import train_and_predict_lassor, evaluate_model as eval_lassor
-export PORT=10000
 
 app = Flask(__name__)
 
@@ -98,6 +97,6 @@ def index():
     return render_template("indes.html", gia_du_doan=gia_du_doan, mse=mse, r2=r2, mae=mae)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # Render sẽ cung cấp PORT qua biến môi trường
+    port = int(os.environ.get("PORT", 5000))  # Render sẽ cung cấp PORT qua biến môi trường
     app.run(host='0.0.0.0', port=port)
 
